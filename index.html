@@ -1,0 +1,23 @@
+<script src="https://d3js.org/d3.v4.min.js"></script>
+
+<style type="text/css">
+  /*css to go here*/
+  svg {
+    border:1px solid #f0f;
+  }
+
+</style>
+
+<body></body>
+
+<script>
+  // properties
+  var margin = {top: 20, right: 20, bottom: 20, left: 20};
+  var width = 800 - margin.left - margin.right;
+  var height = 600 - margin.top - margin.bottom;
+
+  var svg = d3.select('body').append('svg')
+    .attr('width', width + margin.left + margin.right)
+    .attr('height', height + margin.top + margin.bottom);
+  
+</script>
