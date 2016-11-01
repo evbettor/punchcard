@@ -51,6 +51,7 @@
     var xScale = d3.scaleBand()
     	.domain(xDomain)
     	.rangeRound([0, width]);
+    var colorScale = d3.scaleOrdinal(d3.schemeCategory20);
     
     // now let's filter like missy is saying
     // filter is like map, so capture the result in a variable
@@ -60,8 +61,15 @@
       return d.year === '1927';
     });
     
-    // plot the circles!
-    
+    // select container, add child elements to it
+    // svg is main container, how to draw circles?
+    var circles = svg.selectAll('circle')
+    	.data(filteredData)
+    	.enter().append('circle')
+    	.attr('r', 5)
+    	.attr('cy', function(d) {return yScale(d.yield);})
+    	.attr('cx', function(d) {return xScale(d.site);})
+    	.attr('fill', function(d) {return colorScale(d.gen);});
   });
   
   
