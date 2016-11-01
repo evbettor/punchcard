@@ -20,4 +20,50 @@
     .attr('width', width + margin.left + margin.right)
     .attr('height', height + margin.top + margin.bottom);
   
+  d3.csv('barleyfull.csv', function(err, response) {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    
+    response.forEach(function(d) {
+      // is this what we wanted to do?
+      d.yield = +d.yield;
+    });
+    
+    // create scales
+    var minMaxY = d3.extent(response, function(d) {return d.yield});
+    console.log(minMaxY)
+    var yScale = d3.scaleLinear()
+    	.domain(minMaxY)
+    // right now minMaxY is [2.9, 75.5]
+    // so you want 2.9 to be mapped to height, 75.5 to 0
+    	.range([height, 0]);
+    // let me do the x scale, since we've never seen it before
+    // we'll use a subset of ordinal scale called **scale band**
+    // scale band takes as domain a set of categories (sites)
+    // and returns a range that's continuous
+    
+    
+  });
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 </script>
