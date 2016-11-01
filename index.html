@@ -39,11 +39,28 @@
     // right now minMaxY is [2.9, 75.5]
     // so you want 2.9 to be mapped to height, 75.5 to 0
     	.range([height, 0]);
+    
+    // for the x's domain, we want to get all the sites
+    // this will give us ALL the sites
+    // but what is nice is that d3 scale will automatically unique it for us
+    var xDomain = response.map(function(d) {return d.site});
     // let me do the x scale, since we've never seen it before
     // we'll use a subset of ordinal scale called **scale band**
     // scale band takes as domain a set of categories (sites)
-    // and returns a range that's continuous
+    // and returns a range that's continuous which is nice 
+    var xScale = d3.scaleBand()
+    	.domain(xDomain)
+    	.rangeRound([0, width]);
     
+    // now let's filter like missy is saying
+    // filter is like map, so capture the result in a variable
+    var filteredData = response.filter(function(d) {
+      // make sure this is string (if we had converted to int
+      // earlier, this should be int)
+      return d.year === '1927';
+    });
+    
+    // plot the circles!
     
   });
   
